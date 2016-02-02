@@ -1,0 +1,50 @@
+template: Hello, %s!
+defaultName: Stranger
+
+database:
+  driverClass: com.mysql.jdbc.Driver
+  user: root
+  password: welcome
+  url: jdbc:mysql://127.0.0.1/dropwizard_test
+  properties:
+    charSet: UTF-8
+  maxWaitForConnection: 10s
+  validationQuery: "/* MyService Health Check */ SELECT 1"
+  minSize: 1
+  maxSize: 32
+  checkConnectionWhileIdle: true
+  maxConnectionAge: 2 minute
+  checkConnectionOnBorrow : true
+  checkConnectionOnConnect : true
+  logValidationErrors : true
+  logAbandonedConnections : true
+
+server:
+  type: default
+  minThreads: 40
+  maxThreads: 40
+  adminConnectors:
+    - type: http
+      port: 7684
+      acceptorThreads: 1
+      selectorThreads: 10
+  applicationConnectors:
+      - type: http
+        port: 7685
+        headerCacheSize: 512 bytes
+        outputBufferSize: 1024KiB
+        maxRequestHeaderSize: 8KiB
+        maxResponseHeaderSize: 8KiB
+        inputBufferSize: 8KiB
+        idleTimeout: 30 seconds
+        minBufferPoolSize: 64 bytes
+        bufferPoolIncrement: 1KiB
+        maxBufferPoolSize: 64KiB
+        acceptorThreads: 1
+        selectorThreads: 10
+        acceptQueueSize: 1024
+        reuseAddress: true
+        soLingerTime: 345s
+        useServerHeader: false
+        useDateHeader: true
+        useForwardedHeaders: true
