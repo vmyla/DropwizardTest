@@ -31,8 +31,6 @@ public class DynamicPersistenceProvider implements PersistenceProvider {
 
   @Override
   public EntityManagerFactory createEntityManagerFactory(String emName, Map map) {
-    // TODO(kamal) - need to load from persistence.xml
-    System.out.println("I am here");
     PersistenceUnitInfo persistenceUnitInfo = new SimplePersistenceUnitInfo();
     @SuppressWarnings("unchecked")
     List<String> packagesToScan =
